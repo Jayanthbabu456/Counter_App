@@ -4,17 +4,31 @@ import Reset from "./components/Reset";
 import { useState } from "react";
 function App() {
   const [value, setValue] = useState(0);
+  const [isIncreased, setIsIncreased] = useState(false);
 
   return (
-    <div className="">
-      <div>
-        <p>Counter App</p>
-        <div>
-          <p>{value}</p>
-          <div>
-            <Increment i={value} i1={setValue} />
-            <Reset r1={setValue} />
-            <Decrement d={value} d1={setValue} />
+    <div className="bg-[#ecfdf1] h-[100vh] flex justify-center items-center">
+      <div className="flex flex-col space-y-10">
+        <p className="text-[40px] font-serif text-center lg:text-[40px]">
+          Counter App
+        </p>
+        <div className="flex flex-col justify-center items-center space-y-8">
+          <p
+            className="text-[#000] text-[50px] font-medium "
+            style={{
+              color: isIncreased
+                ? "green"
+                : isIncreased === false
+                ? "red"
+                : "black",
+            }}
+          >
+            {value}
+          </p>
+          <div className="flex flex-row gap-3 py-10 lg:gap-10  ">
+            <Increment i={value} i1={setValue} increase={setIsIncreased} />
+            <Reset r1={setValue} increase={setIsIncreased} />
+            <Decrement d={value} d1={setValue} increase={setIsIncreased} />
           </div>
         </div>
       </div>
